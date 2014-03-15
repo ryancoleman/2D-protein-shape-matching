@@ -1,6 +1,0 @@
-#!/bin/sh
-PYPNG_VERSION=$(grep '^__version__' code/png.py)
-PYPNG_VERSION=${PYPNG_VERSION%\"*}
-PYPNG_VERSION=${PYPNG_VERSION##*\"}
-export PYPNG_VERSION
-printf '%s\n' "$PYPNG_VERSION"

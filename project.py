@@ -19,7 +19,18 @@ def projectPoints(pointList, vector, theta):
   vecU, vecV, vecW = vector
   cosTheta = math.cos(theta)
   sinTheta = math.sin(theta)
-
+  newPts = []
+  for point in pointList:
+    ptX, ptY, ptZ = point
+    uxvywz = vecU * ptX + vecV * ptY + vecW * ptZ
+    newX = vecU * uxvywz * (1 - cosTheta) + ptX * cosTheta + (
+         -vecW * ptY + vecV * ptZ) * sinTheta
+    newY = vecV * uxvywz * (1 - cosTheta) + ptY * cosTheta + (
+         -vecW * ptX + vecU * ptZ) * sinTheta
+    newZ = vecW * uxvywz * (1 - cosTheta) + ptZ * cosTheta + (
+         -vecV * ptX + vecU * ptY) * sinTheta
+    newPts.append((newX, newY, newZ))
+  return newPts
 
 
 points = [[1., 2., 3.], [3., 2., 3.], [-2, 0., 1.]]

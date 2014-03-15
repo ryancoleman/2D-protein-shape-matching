@@ -3,19 +3,48 @@
 import math
 import geometry
 import random
+import string
 
+def listToString(aList):
+  '''turns [1, 0, 0, 1] into '1001' '''
+  retStr = string.join([str(item) for item in aList], '')
+  return retStr
 
+def make2dMap(projectPts, radius, mins, maxs, size):
+  '''takes list of 2d points & radius. makes a grid of the size by size.
+  using mins & maxs, maps those points onto the grid, coloring points within
+  the radius. returns ['0110', '0010', '0100', '0000'] for example.
+  which can be directly written to a 1-bit png file'''
+  oneRow = [0 for count in xrange(size)]
+  matrix = [oneRow[:] for count in xrange(size)]
+  scale = (maxs[0] - mins[0]) / size
+  radiusScaled = radius / scale
+  for point in projectPts:
+    locationX = (point[0] - mins[0]) / scale
+    locationY = (point[1] - mins[1]) / scale
+    xMin = int(math.floor(locationX - radius))
+    yMin = int(math.floor(locationY - radius))
+    for xPt in xrange(xMin, xMin + int(radius * 2)):
+      for yPt in xrange(yMin, yMin + int(radius * 2)):
+        matrix[xPt][yPt] = 1
+    #screw radius for now
+    matrix[int(math.floor(locationX))][int(math.floor(locationY))] = 1
+  retMatrix = []
+  for row in matrix:
+    convertedRow = listToString(row)
+    retMatrix.append(convertedRow)
+  return retMatrix
 
-def size2dSquare(pointList):
+def size2dSquare(pointList, radius):
   '''takes list of 2d points. return min & max, make them square'''
-  mins = [pointList[0][0], pointList[0][1]]  # first point to init
-  maxs = [pointList[0][0], pointList[0][1]]
+  mins = [pointList[0][0] - radius, pointList[0][1] - radius]  # first point to init
+  maxs = [pointList[0][0] + radius, pointList[0][1] + radius]
   for point in pointList[1:]:  # now do the rest
     for dimension in xrange(2):
-      if point[dimension] < mins[dimension]:
-        mins[dimension] = point[dimension]
-      if point[dimension] > maxs[dimension]:
-        maxs[dimension] = point[dimension]
+      if point[dimension] - radius < mins[dimension]:
+        mins[dimension] = point[dimension] - radius
+      if point[dimension] + radius > maxs[dimension]:
+        maxs[dimension] = point[dimension] + radius
   #okay now make this square, left and top (mins) aligned
   xSize = maxs[0] - mins[0]
   ySize = maxs[1] - mins[1]

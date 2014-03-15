@@ -17,5 +17,6 @@ for onePdb in glob.iglob(os.path.join(pdbLocation, '*.pdb')):  # every PDB
   normalVec = geometry.normalizeVector((1., 0., 0.))
   theta = 0.
   projectedPts = project.projectPointsOnto2D(points, normalVec, theta)
-  print projectedPts
+  mins, maxs = project.size2dSquare(projectedPts)
+  print mins, maxs
   pngwriter = png.Writer(size, size, greyscale=True, bitdepth=1)

@@ -4,6 +4,27 @@ import math
 import geometry
 import random
 
+
+
+def size2dSquare(pointList):
+  '''takes list of 2d points. return min & max, make them square'''
+  mins = [pointList[0][0], pointList[0][1]]  # first point to init
+  maxs = [pointList[0][0], pointList[0][1]]
+  for point in pointList[1:]:  # now do the rest
+    for dimension in xrange(2):
+      if point[dimension] < mins[dimension]:
+        mins[dimension] = point[dimension]
+      if point[dimension] > maxs[dimension]:
+        maxs[dimension] = point[dimension]
+  #okay now make this square, left and top (mins) aligned
+  xSize = maxs[0] - mins[0]
+  ySize = maxs[1] - mins[1]
+  if ySize > xSize:
+    maxs[0] = mins[0] + ySize
+  else:
+    maxs[1] = mins[1] + xSize
+  return mins, maxs
+
 def projectPointsOnto2D(pointList, vector, theta):
   '''
   moves 3d points around, then discared z

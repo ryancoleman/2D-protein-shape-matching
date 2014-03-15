@@ -22,13 +22,12 @@ def make2dMap(projectPts, radius, mins, maxs, size):
   for point in projectPts:
     locationX = (point[0] - mins[0]) / scale
     locationY = (point[1] - mins[1]) / scale
-    xMin = int(math.floor(locationX - radius))
-    yMin = int(math.floor(locationY - radius))
+    xMin = int(math.floor(locationX - radiusScaled))
+    yMin = int(math.floor(locationY - radiusScaled))
     #this makes boxes instead of circles... so lazy
-    for xPt in xrange(xMin, xMin + int(radius * 2)):
-      for yPt in xrange(yMin, yMin + int(radius * 2)):
+    for xPt in xrange(xMin, xMin + int(radiusScaled * 2)):
+      for yPt in xrange(yMin, yMin + int(radiusScaled * 2)):
         matrix[xPt][yPt] = 1
-    matrix[int(math.floor(locationX))][int(math.floor(locationY))] = 1
   retMatrix = []
   for row in matrix:
     convertedRow = listToString(row)

@@ -32,9 +32,10 @@ def projectPoints(pointList, vector, theta):
     newPts.append((newX, newY, newZ))
   return newPts
 
-
-points = [[1., 2., 3.], [3., 2., 3.], [-2, 0., 1.]]
-vecRot = geometry.normalizeVector(
-    (random.random(), random.random(), random.random()))
-theta = random.random()
-print projectPoints(points, vecRot, theta)
+#following is for rudimentary testing
+if __name__ == "__main__":
+  points = [[1., 2., 3.], [3., 2., 3.], [-2, 0., 1.]]
+  vecRot = geometry.normalizeVector(
+      (random.random(), random.random(), random.random()))
+  theta = random.random()
+  print projectPoints(points, vecRot, theta)

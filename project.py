@@ -4,8 +4,20 @@ import math
 import geometry
 import random
 
+def projectPointsOnto2D(pointList, vector, theta):
+  '''
+  moves 3d points around, then discared z
+  '''
+  newPts = projectPoints(pointList, vector, theta)
+  twodpts = []
+  for onePt in newPts:
+    twodpts.append(onePt[:2])  # discard Z
+  return twodpts
+
 def projectPoints(pointList, vector, theta):
   '''
+  moves 3d points around to other 3d points
+
   http://inside.mines.edu/~gmurray/ArbitraryAxisRotation/
   ArbitraryAxisRotation.html
   f(x,y,z,u,v,w,theta) =

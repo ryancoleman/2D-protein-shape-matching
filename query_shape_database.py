@@ -19,8 +19,14 @@ def readPngBitString(pngName):
   return bitstring
   
 querybits = readPngBitString(queryFileName)
-for pngFileName in glob.iglob(os.path.join(databaseDir, '1*.png')):
+namesToBits = {}
+for count, pngFileName in enumerate(
+    glob.iglob(os.path.join(databaseDir, '1b*.png'))):
+  #print pngFileName, count
   searchbits = readPngBitString(pngFileName)
+  namesToBits[pngFileName] = searchbits
+nameTani = []
+for name, searchbits in namesToBits.iteritems():
   both = 0
   either = 0
   for count in xrange(len(querybits)):
@@ -29,5 +35,6 @@ for pngFileName in glob.iglob(os.path.join(databaseDir, '1*.png')):
     if querybits[count] == '1' or searchbits[count] == '1':
       either += 1
   tanimoto = both/float(either)
-  print tanimoto, pngFileName
-  
+  nameTani.append((name, tanimoto))
+for name, tanimoto in nameTani:
+  print name, tanimoto

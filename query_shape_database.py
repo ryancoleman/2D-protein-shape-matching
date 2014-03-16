@@ -5,9 +5,10 @@ import string
 import png
 import os
 import project
+import sys
 
 databaseDir = 'database'
-queryFileName = 'database/1a69.1.0.0.0.0.0.2.4.png'
+queryFileName = sys.argv[1]
 
 def readPngBitString(pngName):
   '''read a png into a bitstring'''
@@ -19,14 +20,10 @@ def readPngBitString(pngName):
   return bitstring
   
 querybits = readPngBitString(queryFileName)
-namesToBits = {}
+bestTani, bestName = 0.0, None
 for count, pngFileName in enumerate(
     glob.iglob(os.path.join(databaseDir, '1b*.png'))):
-  #print pngFileName, count
   searchbits = readPngBitString(pngFileName)
-  namesToBits[pngFileName] = searchbits
-nameTani = []
-for name, searchbits in namesToBits.iteritems():
   both = 0
   either = 0
   for count in xrange(len(querybits)):
@@ -35,6 +32,6 @@ for name, searchbits in namesToBits.iteritems():
     if querybits[count] == '1' or searchbits[count] == '1':
       either += 1
   tanimoto = both/float(either)
-  nameTani.append((name, tanimoto))
-for name, tanimoto in nameTani:
-  print name, tanimoto
+  if tanimoto > bestTani:
+    bestTani, bestName = tanimoto, pngFileName
+print bestTani, bestName

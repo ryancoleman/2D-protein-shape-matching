@@ -25,8 +25,7 @@ for onePdb in glob.iglob(os.path.join(pdbLocation, '*.pdb')):  # every PDB
     os.mkdir(os.path.join(databaseDir, pdbCode))
   except OSError:
     pass  # directory exists, fine
-  for vector in [2]:
-#  for vector in xrange(3):
+  for vector in xrange(3):
     for thetaTen in xrange(0, 62, 3):
       vecX, vecY, vecZ = 0., 0., 0.
       if vector == 0:

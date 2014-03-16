@@ -51,6 +51,10 @@ def size2dSquare(pointList, radius):
     maxs[0] = mins[0] + ySize
   else:
     maxs[1] = mins[1] + xSize
+  mins[0] -= radius
+  mins[1] -= radius
+  maxs[0] += radius
+  maxs[1] += radius
   return mins, maxs
 
 def projectPointsOnto2D(pointList, vector, theta):

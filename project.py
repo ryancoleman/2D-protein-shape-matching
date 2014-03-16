@@ -91,7 +91,7 @@ def projectPoints(pointList, vector, theta):
     newX = vecU * uxvywz * (1 - cosTheta) + ptX * cosTheta + (
          -vecW * ptY + vecV * ptZ) * sinTheta
     newY = vecV * uxvywz * (1 - cosTheta) + ptY * cosTheta + (
-         -vecW * ptX + vecU * ptZ) * sinTheta
+         vecW * ptX - vecU * ptZ) * sinTheta
     newZ = vecW * uxvywz * (1 - cosTheta) + ptZ * cosTheta + (
          -vecV * ptX + vecU * ptY) * sinTheta
     newPts.append((newX, newY, newZ))

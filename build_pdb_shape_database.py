@@ -17,17 +17,24 @@ try:
 except OSError:
   pass  # directory exists, fine
 
-for onePdb in glob.iglob(os.path.join(pdbLocation, '*.pdb')):  # every PDB
+for onePdb in glob.iglob(os.path.join(pdbLocation, '9*.pdb')):  # every PDB
   pdbD = pdb.pdbData(onePdb)
   pdbCode = string.split(os.path.split(onePdb)[-1], '.')[0]
   points = pdbD.coords
-  for vector in xrange(2):
+  try:
+    os.mkdir(os.path.join(databaseDir, pdbCode))
+  except OSError:
+    pass  # directory exists, fine
+  for vector in [2]:
+#  for vector in xrange(3):
     for thetaTen in xrange(0, 62, 3):
       vecX, vecY, vecZ = 0., 0., 0.
       if vector == 0:
         vecX = 1.
       elif vector == 1:
         vecY = 1.
+      elif vector == 2:
+        vecZ = 1.
       normalVec = geometry.normalizeVector((vecX, vecY, vecZ))
       theta = thetaTen / 10.  
       name = string.join([str(vecX), str(vecY), str(vecZ), str(theta)], '.')
@@ -35,7 +42,8 @@ for onePdb in glob.iglob(os.path.join(pdbLocation, '*.pdb')):  # every PDB
       mins, maxs = project.size2dSquare(projectedPts, radius)
       matrix = project.make2dMap(projectedPts, radius, mins, maxs, size)
       pngfile = open(
-          os.path.join(databaseDir, pdbCode + '.' + name + '.png'), 'wb')
+          os.path.join(
+              databaseDir, pdbCode, pdbCode + '.' + name + '.png'), 'wb')
       pngwriter = png.Writer(size, size, greyscale=True, bitdepth=1)
       pngwriter.write(pngfile, matrix)
       pngfile.close()

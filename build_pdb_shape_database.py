@@ -17,7 +17,7 @@ try:
 except OSError:
   pass  # directory exists, fine
 
-for onePdb in glob.iglob(os.path.join(pdbLocation, '9*.pdb')):  # every PDB
+for onePdb in glob.iglob(os.path.join(pdbLocation, '*.pdb')):  # every PDB
   pdbD = pdb.pdbData(onePdb)
   pdbCode = string.split(os.path.split(onePdb)[-1], '.')[0]
   points = pdbD.coords

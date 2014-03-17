@@ -9,6 +9,7 @@ First, you'll need to make a bunch of precomputed images of proteins from many v
 
 Now, you want to query them with something. The easiest way is to make a file like this:
 
+```
 001111110000000000
 001111111000000000
 001111111110000000
@@ -31,6 +32,7 @@ Now, you want to query them with something. The easiest way is to make a file li
 001100010000000000
 000110000000000010
 000000000000000000
+```
 
 put it in the shapes/ directory and run convert_image_shape.py to get this:
 

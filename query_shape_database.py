@@ -22,7 +22,7 @@ def readPngBitString(pngName):
 querybits = readPngBitString(queryFileName)
 bestTani, bestName = 0.0, None
 for count, pngFileName in enumerate(
-    glob.iglob(os.path.join(databaseDir, '1b*.png'))):
+    glob.iglob(os.path.join(databaseDir, '*', '*.png'))):
   searchbits = readPngBitString(pngFileName)
   both = 0
   either = 0

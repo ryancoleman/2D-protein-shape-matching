@@ -10,6 +10,34 @@ def listToString(aList):
   retStr = string.join([str(item) for item in aList], '')
   return retStr
 
+def make2dMapFromShape(inFileName, size):
+  '''reads a 2d file like this:
+  0010
+  0110
+  1110
+  0111
+  and expands it to the size X size matrix just like make2dmap (list of lists of
+  1s and 0s)  and returns that. right now only sanely makes images bigger
+  '''
+  inFile = open(inFileName, 'r')
+  inMatrix = []
+  for line in inFile:
+    inRow = string.strip(line)
+    inMatrix.append(inRow)
+  inFile.close()
+  longestDimension = max(len(inMatrix), len(inMatrix[0]))
+  scale = int(math.floor(float(size)/float(longestDimension)))
+  oneRow = [0 for count in xrange(size)]
+  matrix = [oneRow[:] for count in xrange(size)]
+  for rowCount, oneLine in enumerate(inMatrix):
+    for colCount, character in enumerate(oneLine):
+      if character == '1':
+        for scaleCountRow in xrange(scale):
+          for scaleCountCol in xrange(scale):
+            matrix[(rowCount * scale) + scaleCountRow][
+                (colCount * scale) + scaleCountCol] = 1
+  return matrix
+ 
 def make2dMap(projectPts, radius, mins, maxs, size):
   '''takes list of 2d points & radius. makes a grid of the size by size.
   using mins & maxs, maps those points onto the grid, coloring points within

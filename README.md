@@ -44,4 +44,11 @@ Now you can run query_shape_database.py shapes/sa.png (or whatever your shape is
 
 as the best match for South America in the database. Cool, right?
 
-Depends on https://github.com/drj11/pypng, I just took the main routine and put it in png.py in the root directory, along with all the other code I wrote. Enjoy. Let me know if you do something cool.
+Depends on https://github.com/drj11/pypng, I just took the main routine and put it in png.py in the root directory, along with all the other code I wrote. Enjoy. Let me know if you do something cool. png.py is MIT, this code is all GPLv2. Go nuts.
+
+Possible extensions
+-------------------
+
+Right now, the premade database is just rotations every 0.3 radians around each cardinal dimension. Could easily make a much bigger database with all possible combinations.
+
+The code to do comparisons of the images is really slow as mentioned. Speeding it up is likely easy.

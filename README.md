@@ -52,3 +52,7 @@ Possible extensions
 Right now, the premade database is just rotations every 0.3 radians around each cardinal dimension. Could easily make a much bigger database with all possible combinations.
 
 The code to do comparisons of the images is really slow as mentioned. Speeding it up is likely easy.
+
+Obviously 2D projections of proteins aren't proteins, maybe somebody needs 3D shapes matched too. But lots of protein images are still made for two dimensional media.
+
+Right now, the overall shape dominates, if you only care about half your image you may only want to 'match' half the image, letting the other half be anything. Easy extension in theory, just need to write the code.

@@ -34,7 +34,6 @@ def readPngBitString(pngName, ignore=None):
       keptLines = lines[:len(lines)/2]  # keep the bottom half
     else:  # ignore the bottom or second half
       keptLines = lines[len(lines)/2:]  # keep the top half
-    print len(keptLines)
     for line in keptLines:
       bitlist.append(project.listToString(list(line)))
   elif ignore == 'left' or ignore == 'right':

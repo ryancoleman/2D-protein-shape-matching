@@ -46,6 +46,8 @@ as the best match for South America in the database. Cool, right?
 
 Depends on https://github.com/drj11/pypng, I just took the main routine and put it in png.py in the root directory, along with all the other code I wrote. Enjoy. Let me know if you do something cool. png.py is MIT, this code is all GPLv2. Go nuts.
 
+Now you can also run query_shape_database.py shapes/sa.png top  to ignore the top half of the image. Other valid options are bottom, left or right.
+
 Possible extensions
 -------------------
 
@@ -55,4 +57,3 @@ The code to do comparisons of the images is really slow as mentioned. Speeding i
 
 Obviously 2D projections of proteins aren't proteins, maybe somebody needs 3D shapes matched too. But lots of protein images are still made for two dimensional media.
 
-Right now, the overall shape dominates, if you only care about half your image you may only want to 'match' half the image, letting the other half be anything. Easy extension in theory, just need to write the code.

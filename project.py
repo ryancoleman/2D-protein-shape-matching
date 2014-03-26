@@ -37,7 +37,7 @@ def make2dMapFromShape(inFileName, size):
             matrix[(rowCount * scale) + scaleCountRow][
                 (colCount * scale) + scaleCountCol] = 1
   return matrix
- 
+
 def make2dMap(projectPts, radius, mins, maxs, size):
   '''takes list of 2d points & radius. makes a grid of the size by size.
   using mins & maxs, maps those points onto the grid, coloring points within
@@ -64,7 +64,8 @@ def make2dMap(projectPts, radius, mins, maxs, size):
 
 def size2dSquare(pointList, radius):
   '''takes list of 2d points. return min & max, make them square'''
-  mins = [pointList[0][0] - radius, pointList[0][1] - radius]  # first point to init
+  mins = [pointList[0][0] - radius, pointList[0][1] - radius]
+  # first point to init
   maxs = [pointList[0][0] + radius, pointList[0][1] + radius]
   for point in pointList[1:]:  # now do the rest
     for dimension in xrange(2):
@@ -105,7 +106,7 @@ def projectPoints(pointList, vector, theta):
   u(ux + vy + wz )(1 - cos theta) + x cos theta + (- wy + vz) sin theta
   v(ux + vy + wz )(1 - cos theta) + ycos theta + (wx - uz) sin theta
   w(ux +  vy + wz )(1 - cos theta) + z cos theta + (- vx + uy) sin theta
-  
+
   use normal vector UVW, rotate theta around this, use every point in pointList
 
   '''
@@ -117,11 +118,11 @@ def projectPoints(pointList, vector, theta):
     ptX, ptY, ptZ = point
     uxvywz = vecU * ptX + vecV * ptY + vecW * ptZ
     newX = vecU * uxvywz * (1 - cosTheta) + ptX * cosTheta + (
-         -vecW * ptY + vecV * ptZ) * sinTheta
+        -vecW * ptY + vecV * ptZ) * sinTheta
     newY = vecV * uxvywz * (1 - cosTheta) + ptY * cosTheta + (
-         vecW * ptX - vecU * ptZ) * sinTheta
+        vecW * ptX - vecU * ptZ) * sinTheta
     newZ = vecW * uxvywz * (1 - cosTheta) + ptZ * cosTheta + (
-         -vecV * ptX + vecU * ptY) * sinTheta
+        -vecV * ptX + vecU * ptY) * sinTheta
     newPts.append((newX, newY, newZ))
   return newPts
 

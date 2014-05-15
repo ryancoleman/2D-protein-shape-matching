@@ -1,6 +1,6 @@
 2D-protein-shape-matching
 =========================
-(https://zenodo.org/badge/3853/ryancoleman/2D-protein-shape-matching.png)
+!(https://zenodo.org/badge/3853/ryancoleman/2D-protein-shape-matching.png)
 
 Did you ever want to find a protein that looks like a cat? Or a dinosaur? Well, now you can.
 

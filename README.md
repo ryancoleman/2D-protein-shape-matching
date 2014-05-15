@@ -1,6 +1,8 @@
 2D-protein-shape-matching
 =========================
 
+https://zenodo.org/badge/3853/ryancoleman/2D-protein-shape-matching.png
+
 Did you ever want to find a protein that looks like a cat? Or a dinosaur? Well, now you can.
 
 First, you'll need to make a bunch of precomputed images of proteins from many views. If you have a bunch of pdb files (one example in pdbs/966c.pdb), you can just run build_pdb_shape_database.py and it will generate them. It takes awhile, so I just put all the ones I generated in database/ I made them 256x256 one-bit images. Here is one:

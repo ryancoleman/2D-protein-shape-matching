@@ -61,7 +61,7 @@ Obviously 2D projections of proteins aren't proteins, maybe somebody needs 3D sh
 One example use
 ---------------
 
-Here's one example I made using this software, travel distance software http://github.com/ryancoleman/travel_distance and a lot of hand-editing on top of it all.
+Here's one example I made using this software, travel distance software http://github.com/ryancoleman/traveldistance and a lot of hand-editing on top of it all.
 
 https://twitter.com/rgcjk/status/585636889077637120
 
